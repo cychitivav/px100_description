@@ -51,11 +51,13 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
-  <build_depend>turtlesim</build_depend>
+  <build_depend>dynamixel_workbench_controllers</build_depend>
+
   <build_export_depend>rospy</build_export_depend>
-  <build_export_depend>turtlesim</build_export_depend>
+  <build_export_depend>dynamixel_workbench_controllers</build_export_depend>
+
   <exec_depend>rospy</exec_depend>
-  <exec_depend>turtlesim</exec_depend>
+  <exec_depend>dynamixel_workbench_controllers</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

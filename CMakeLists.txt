@@ -9,7 +9,7 @@ project(px100_robot)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
-  turtlesim
+  dynamixel_workbench_controllers
 )
 
 ## System dependencies are found with CMake's conventions
