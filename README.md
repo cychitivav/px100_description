@@ -27,8 +27,8 @@ The dependencies of this package are:
 ## Robot description
 To properly move the robot, a model was first created taking into account the measurements made with a vernier caliper.
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/30636259/167985968-a38b2639-67d4-43f1-95a2-bb6e3385b5a5.png#gh-light-mode-only" width="600px">
-    <img src="https://user-images.githubusercontent.com/30636259/167985973-424f5602-4897-4146-8d0e-67edd4a82a86.png#gh-dark-mode-only" width="600px">
+    <img src="https://user-images.githubusercontent.com/30636259/168069841-0ad7f173-1fb5-4adf-90f7-7241f0089d0b.png#gh-light-mode-only" width="600px">
+    <img src="https://user-images.githubusercontent.com/30636259/168069834-93b07fa0-41b0-432c-b5ac-eff768c2b66e.png#gh-dark-mode-only" width="600px">
 </p>
 
 where the measurements are:
@@ -50,7 +50,7 @@ where the measurements are:
     </li>
 </ul>
 
-#### Parameters Denavit-Hartenberg standard 
+#### Denavit-Hartenberg standard parameters
 <table align="center">
     <tr align="center">
         <th>
@@ -164,12 +164,20 @@ where the measurements are:
     </tr>
 </table>
 
-### URDF 
+### URDF (Unified Robot Description Format)
+In order to visualize the robot in RViz, we created a [URDF file](urdf/robot.urdf). This file contains the information on how the links and joints of the robot are connected, in addition to the [CAD models](https://github.com/Interbotix/interbotix_ros_manipulators/tree/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes)[^pxstore] for a closer view of reality. The structure to create a urdf can be seen in the following image:
+
+<p align="center">
+    <img alt="joints and links urdf" src"http://wiki.ros.org/urdf/XML/joint?action=AttachFile&do=get&target=joint.png">
+</p>
 
 
 ## Launch file
-
-
+To display the joints and links correctly in RViz, it is necessary to run the nodes that publish the robot and joint states. These nodes must be run every time you want to check the package and it becomes tedious, so you create a [launch file](launch/px100_rviz.launch) that runs the simulation.
 
 
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->
+
+
+## References
+[^pxstore] PincherX 100 Robot Arm - X-Series Robotic Arm..

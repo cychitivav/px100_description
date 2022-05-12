@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<robot name="filoberta">
+    <link name="world"></link>
+
+    <joint name="joint_world" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <parent link="world" />
+        <child link="link0" />
+    </joint>
+
+    <link name="link0">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_1_base.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="waist" type="revolute">
+        <origin xyz="0.0 0.0 0.0445" rpy="0.0 0.0 0.0" />
+        <parent link="link0" />
+        <child link="link1" />
+        <axis xyz="0.0 0.0 1.0" />
+        <limit lower="${-150*pi/180}" upper="${150*pi/180}" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="link1">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_2_shoulder.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="shoulder" type="revolute">
+        <origin xyz="0.0 0.0 0.0445" rpy="${-pi/2} 0.0 0.0" />
+        <parent link="link1" />
+        <child link="link2" />
+        <axis xyz="0.0 0.0 1.0" />
+        <limit lower="${-150*pi/180}" upper="${150*pi/180}" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="link2">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="${pi/2} ${-pi/2} 0.0" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_3_upper_arm.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>    
+
+    <joint name="elbow" type="revolute">
+        <origin xyz="0.0315 -0.101 0.0" rpy="0.0 0.0 0.0" />
+        <parent link="link2" />
+        <child link="link3" />
+        <axis xyz="0.0 0.0 1.0" />
+        <limit lower="${-150*pi/180}" upper="${150*pi/180}" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="link3">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2} ${pi/2} " />             
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_4_forearm.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+    
+    <joint name="wrist" type="revolute">
+        <origin xyz="0.101 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <parent link="link3" />
+        <child link="link4" />
+        <axis xyz="0.0 0.0 1.0" />
+        <limit lower="${-150*pi/180}" upper="${150*pi/180}" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="link4">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${-pi/2} ${pi/2}" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_5_gripper.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="joint4" type="fixed">
+        <origin xyz="0.109 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <parent link="link4" />
+        <child link="gripper_bar" />
+    </joint>
+
+    <link name="gripper_bar">
+        <visual>
+            <origin xyz="-0.109 0.0 0.0" rpy="${pi/2} ${-pi/2} 0.0" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_7_gripper_bar.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="gripper" type="revolute">
+        <origin xyz="0.066 0.0 0.0" rpy="0.0 ${pi/2} 0.0" />
+        <parent link="link4" />
+        <child link="prop" />
+        <axis xyz="0.0 0.0 1.0" />
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="prop">
+        <visual>
+            <origin xyz="0.0 0.0 -0.066" rpy="${-pi/2} 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_6_gripper_prop.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="joint6" type="prismatic">
+        <origin xyz="${0.08605-0.109} 0.0 0.0" rpy="${pi/2} ${pi} 0.0" />
+        <parent link="gripper_bar" />
+        <child link="finger_1" />
+        <axis xyz="0.0 1.0 0.0" />
+        <limit lower="-0.04" upper="-0.015" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="finger_1">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_8_gripper_finger.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="joint7" type="prismatic">
+        <origin xyz="${0.08605-0.109} 0.0 0.0" rpy="${-pi/2} ${pi} 0.0" />
+        <parent link="gripper_bar" />
+        <child link="finger_2" />
+        <axis xyz="0.0 1.0 0.0" />
+        <limit lower="-0.04" upper="-0.015" effort="0.0" velocity="0.0" />
+    </joint>
+
+    <link name="finger_2">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://px100_robot/meshes/px100_8_gripper_finger.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.15 0.15 0.15 1.0" />
+            </material>
+        </visual>
+    </link> 
+</robot>
