@@ -1,23 +1,28 @@
 <launch>
+    <!-- Args dynamixel -->
     <arg name="usb_port" default="/dev/ttyUSB1" />
     <arg name="dxl_baud_rate" default="1000000" />
     <arg name="namespace" default="dynamixel_workbench" />
     <arg name="run_dynamixel" default="false" />
 
+    <!-- Args robot description -->
     <arg name="rvizconfig" default="$(find px100_robot)/rviz/config.rviz" />
     <arg name="model" default="$(find px100_robot)/urdf/robot.urdf" />
 
+    <!-- Start robot model and robot state publisher nodes -->
     <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
+    <!-- Start dynamixel package if run_dynamixel arg is true -->
     <param name="dynamixel_info" value="$(find px100_robot)/config/motors.yaml" />
-
     <node if="$(arg run_dynamixel)" name="$(arg namespace)" pkg="dynamixel_workbench_controllers" type="dynamixel_workbench_controllers" required="true" output="screen" args="$(arg usb_port) $(arg dxl_baud_rate)">
         <rosparam command="load" file="$(find px100_robot)/config/dynamixel.yaml" />
         <remap from="/dynamixel_workbench/joint_states" to="joint_states" />
     </node>
 
+    <!-- Run RViz with config -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
-    <node name="key_teleop" pkg="px100_robot" output="screen" type="key_control.py" args="$(arg run_dynamixel)"/>
+    <!-- Run keyboard python node -->
+    <node name="key_teleop" pkg="px100_robot" output="screen" type="key_control.py" args="$(arg run_dynamixel)" />
 </launch>

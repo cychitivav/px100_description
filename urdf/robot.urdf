@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <robot name="filoberta">
+    <!-- Add fixed base link -->
     <link name="world"></link>
 
+    <!-- Add fixed transform to fix base link robot -->
     <joint name="joint_world" type="fixed">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
         <parent link="world" />
         <child link="link0" />
     </joint>
 
+    <!-- Create a link for each part of px100 with its joints -->
     <link name="link0">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
@@ -138,6 +141,7 @@
         </visual>
     </link>
 
+    <!-- Joint finger 1 with mimc respect to last motor -->
     <joint name="joint6" type="prismatic">
         <origin xyz="${0.08605-0.109} 0.0 0.0" rpy="${pi/2} ${pi} 0.0" />
         <parent link="gripper_bar" />
@@ -159,7 +163,7 @@
         </visual>
     </link>
 
-    <!-- Joint finger 1 -->
+    <!-- Joint finger 2 with mimc respect to last motor -->
     <joint name="joint7" type="prismatic">
         <origin xyz="${0.08605-0.109} 0.0 0.0" rpy="${-pi/2} ${pi} 0.0" />
         <parent link="gripper_bar" />
