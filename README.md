@@ -212,17 +212,41 @@ roslaunch px100 px100.launch run_dynamixel:=true
 ```
 > __Note:__ The second launch file can receive an argument to run or not the *dynamixel_workbenh* packages, which is responsible for publishing the joint states by making a remap of the **/dynamixel_workbench/joint_states** to **/joint_states** topic.
 
-#### Bonus  
+##### Configuration files
+The files to setup the parameter needed to run the *dynamixel_workbench* package are in the [configuration folder](config/).
+
+
+### Bonus  
 In the urdf we add the cad model of the gripper fingers, along with its respective prismatic joints and the mimic attribute to establish a relationship between the movement of the last motor (joint 4) and the movement of the gripper.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/30636259/168398263-fbae64a6-0c0a-42f4-afa5-5d3920242cc4.gif" width="400px">
 </p>
 
+## Robotics toolbox by Peter Corke
+To create the robot in Peter Corke's toolbox for MATLAB, we use the *SerialLink* object and the [DH parameter table](#Denavit-Hartenberg-standard-parameters).
 
-#### Configuration files
-The files to setup the parameter needed to run the *dynamixel_workbench* package are in the [configuration folder](config/).
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/30636259/168400374-2859f4a7-c929-43c5-bf62-8fb3b9c55550.svg" width="400px">
+</p>
 
+In order to display the `noa` frame, we use the *tool* property in the SerialLink object. Other configurations of the robot are shown in the following image:
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/30636259/168400566-6522913a-0214-4ad1-b81c-0e90264ff7ed.svg" width="400px">
+</p>
+
+1. <img src="https://render.githubusercontent.com/render/math?math=[\pi/6, \pi/3, -\pi, 3\pi/4]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[\pi/6, \pi/3, -\pi, 3\pi/4]#gh-dark-mode-only"> 
+1. <img src="https://render.githubusercontent.com/render/math?math=[\pi/3, \pi/6, \pi/7, 3\pi/7]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[\pi/3, \pi/6, \pi/7, 3\pi/7]#gh-dark-mode-only"> 
+1. <img src="https://render.githubusercontent.com/render/math?math=[-\pi/6, \pi/5, \pi/4, \pi]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[-\pi/6, \pi/5, \pi/4, \pi]#gh-dark-mode-only"> 
+1. <img src="https://render.githubusercontent.com/render/math?math=[\pi,\pi/9,-\pi/2, -3\pi/4]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[\pi,\pi/9,-\pi/2, -3\pi/4]#gh-dark-mode-only"> 
+
+> The development of this code is in [px file](matlab/px.m).
+
+## MATLAB connection
+To establish the MATLAB connection with the dynamixel package, the tutorial described at this [repo](https://github.com/fegonzalez7/rob_unal_clase4) was used. To send each joint position, we create a ROS client and the position and id of each motor is sent with a message.
+
+Finally, the conection with MATLAB, ROS and python is shown in the following video:
 
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->
 
