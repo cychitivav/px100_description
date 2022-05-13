@@ -220,7 +220,8 @@ In the urdf we add the cad model of the gripper fingers, along with its respecti
 </p>
 
 
-### Configuration files
+#### Configuration files
+The files to setup the parameter needed to run the *dynamixel_workbench* package are in the [configuration folder](config/).
 
 
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->

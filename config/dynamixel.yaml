@@ -1,0 +1,6 @@
+publish_period: 0.010
+dxl_read_period: 0.010
+dxl_write_period: 0.010
+mobile_robot_config:
+  separation_between_wheels: 0.160
+  radius_of_wheel: 0.033
