@@ -50,7 +50,7 @@ where the measurements are:
     </li>
 </ul>
 
-#### Denavit-Hartenberg standard parameters
+### Denavit-Hartenberg standard parameters
 <table align="center">
     <tr align="center">
         <th>
@@ -164,20 +164,68 @@ where the measurements are:
     </tr>
 </table>
 
+
+## ROS
+Based on the _dynamixel workbench packages_ in ROS, we created a Python script that calls the __dynamixel_command service__ to move each of the manipulator's joints (waist, shoulder, elbow, wrist). This movement is done between two characteristic positions (__home__ and __goal__) and can be switched using the following keys:
+
+* <kbd>w</kbd>: Select next joint (if are selected the waist, pass to the shoulder)
+* <kbd>s</kbd>: Select previous joint (if are selected the gripper, pass to the wrist)
+* <kbd>a</kbd>: Go the selected joint to home position.
+* <kbd>d</kbd>: Go the selected joint to goal position.
+
+> __Note:__ The change between joints is cyclic, so if you select the gripper, the next joint will be the waist and vice versa.
+
+The code used to move the manipulator uses the _pynput_ library to detect the keys pressed, and the *dynamixel_command service* to send commands to dynamixel motors. The code is available in this [file](scripts/key_control.py).
+
 ### URDF (Unified Robot Description Format)
-In order to visualize the robot in RViz, we created a [URDF file](urdf/robot.urdf). This file contains the information on how the links and joints of the robot are connected, in addition to the [CAD models](https://github.com/Interbotix/interbotix_ros_manipulators/tree/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes)[^pxstore] for a closer view of reality. The structure to create a urdf can be seen in the following image:
+In order to visualize the robot in RViz, we created a [URDF file](urdf/robot.urdf). This file contains the information on how the links and joints of the robot are connected, in addition to the [CAD models](https://github.com/Interbotix/interbotix_ros_manipulators/tree/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes)[^pxstore] for a closer view of reality. The structure to create a urdf can be seen in the following image[^urdf]:
 
 <p align="center">
-    <img alt="joints and links urdf" src"http://wiki.ros.org/urdf/XML/joint?action=AttachFile&do=get&target=joint.png">
+    <a href="http://wiki.ros.org/urdf/Tutorials">
+        <img alt="joints and links urdf" src="https://user-images.githubusercontent.com/30636259/168392285-429063e7-f742-454e-a321-bfebf15f6370.png" width="300px">
+    </a>
+</p>
+
+Finally, the robot model in RViz is:
+
+<p align="center">
+    <img alt="rviz" src="https://user-images.githubusercontent.com/30636259/168394476-701abd29-d1d5-40da-b99d-63ff6d952e59.png" width="700px">
 </p>
 
 
-## Launch file
-To display the joints and links correctly in RViz, it is necessary to run the nodes that publish the robot and joint states. These nodes must be run every time you want to check the package and it becomes tedious, so you create a [launch file](launch/px100_rviz.launch) that runs the simulation.
+#### Launch file
+To display the joints and links correctly in RViz, it is necessary to run the nodes that publish the robot and joint states (and RViz node). These nodes must be run every time you want to check the package and it becomes tedious, so you create a launch file that runs the dynamixel packages and Rviz.
+
+This package has two launch files, the [first file](launch/px100_rviz.launch) to run RViz with a joint state publisher gui. And the [second file](launch/px100.launch) runs Rviz but the [python file](scripts/key_control.py) is used to move the joints.
+
+##### Execution
+The first launch file can be executed with the following command:
+
+```bash
+roslaunch px100_rviz px100_rviz.launch
+```
+
+and the second launch file with the following command:
+
+```bash
+roslaunch px100 px100.launch run_dynamixel:=true
+```
+> __Note:__ The second launch file can receive an argument to run or not the *dynamixel_workbenh* packages, which is responsible for publishing the joint states by making a remap of the **/dynamixel_workbench/joint_states** to **/joint_states** topic.
+
+#### Bonus  
+In the urdf we add the cad model of the gripper fingers, along with its respective prismatic joints and the mimic attribute to establish a relationship between the movement of the last motor (joint 4) and the movement of the gripper.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/30636259/168398263-fbae64a6-0c0a-42f4-afa5-5d3920242cc4.gif" width="400px">
+</p>
+
+
+### Configuration files
 
 
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->
 
 
 ## References
-[^pxstore] PincherX 100 Robot Arm - X-Series Robotic Arm..
+[^pxstore]: PincherX 100 Robot Arm - X-Series Robotic Arm..
+[^urdf]: [Urdf/Tutorials - ROS Wiki.](http://wiki.ros.org/urdf/Tutorials)
