@@ -9,7 +9,7 @@ import sys
 
 class myKeyboard():
     def __init__(self, dynamixel):
-        self.dynamixel = true if dynamixel == 'true' else False
+        self.dynamixel = True if dynamixel == 'true' else False
         self.currentID = 1
         self.homePosition = [0, 0, 0, 0, 0]
         self.goalPosition = [45, -30, 30, -70, 60]  # deg
