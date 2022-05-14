@@ -248,6 +248,8 @@ To establish the MATLAB connection with the dynamixel package, the tutorial desc
 
 Finally, the conection with MATLAB, ROS and python is shown in the following video:
 
+https://user-images.githubusercontent.com/30636259/168402959-8d4c3c9a-d791-44a3-9c8f-2eef6cf14a95.mp4
+
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->
 
 
