@@ -27,143 +27,30 @@ The dependencies of this package are:
 ## Robot description
 To properly move the robot, a model was first created taking into account the measurements made with a vernier caliper.
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/30636259/168069841-0ad7f173-1fb5-4adf-90f7-7241f0089d0b.png#gh-light-mode-only" width="600px">
-    <img src="https://user-images.githubusercontent.com/30636259/168069834-93b07fa0-41b0-432c-b5ac-eff768c2b66e.png#gh-dark-mode-only" width="600px">
+    <img src="https://user-images.githubusercontent.com/30636259/169600958-763d1628-b7bb-475c-a5cc-56120d1d3ff9.svg#gh-light-mode-only" width="600px">
+    <img src="https://user-images.githubusercontent.com/30636259/169601364-d561fece-3c1c-4a8e-9616-bae1d36fa925.svg#gh-dark-mode-only" width="600px">
 </p>
 
 where the measurements are:
-<ul>
-    <li> 
-        <img src="https://render.githubusercontent.com/render/math?math=L_1=44.5\ \ mm#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_1=44.5\ mm#gh-dark-mode-only"> 
-    </li>
-    <li> 
-        <img src="https://render.githubusercontent.com/render/math?math=L_2=101\ \ mm#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_2=101\ mm#gh-dark-mode-only">
-    </li>
-    <li> 
-        <img src="https://render.githubusercontent.com/render/math?math=L_3=101\ \ mm#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_3=101\ mm#gh-dark-mode-only"> 
-    </li>
-    <li>   
-        <img src="https://render.githubusercontent.com/render/math?math=L_4=109\ \ mm#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_4=109\ mm#gh-dark-mode-only"> 
-    </li>
-    <li>
-        <img src="https://render.githubusercontent.com/render/math?math=L_m=31.5\ \ mm#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_m=31.5\ mm#gh-dark-mode-only"> 
-    </li>
-</ul>
+* $L_1=44.5~mm$
+* $L_2=101~mm$
+* $L_3=101~mm$
+* $L_4=109~mm$
+* $L_m=31.5~mm$
 
 ### Denavit-Hartenberg standard parameters
-<table align="center">
-    <tr align="center">
-        <th>
-            <img src="https://render.githubusercontent.com/render/math?math=\mathbf{i}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}\mathbf{i}#gh-dark-mode-only"> 
-        </th>
-        <th>
-            <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\theta_i}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}\mathbf{\theta_i}#gh-dark-mode-only"> 
-        </th>
-        <th>
-            <img src="https://render.githubusercontent.com/render/math?math=\mathbf{d_i}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}\mathbf{d_i}#gh-dark-mode-only"> 
-        </th>
-        <th>
-            <img src="https://render.githubusercontent.com/render/math?math=\mathbf{a_i}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}\mathbf{a_i}#gh-dark-mode-only"> 
-        </th>
-        <th>
-            <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\alpha_i}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}\mathbf{\alpha_i}#gh-dark-mode-only"> 
-        </th>
-    </tr>
-    <tr align="center">
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=1#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}1#gh-dark-mode-only"> 
-        </td> 
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=q_1#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}q_1#gh-dark-mode-only"> 
-        </td>  
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=L_1#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_1#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=-\dfrac{\pi}{2}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}-\dfrac{\pi}{2}#gh-dark-mode-only"> 
-        </td>
-    </tr>
-    <tr align="center">
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=2#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}2#gh-dark-mode-only"> 
-        </td> 
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=q_2#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}q_2#gh-dark-mode-only"> 
-        </td>  
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=\sqrt{L_2^2%2bL_m^2}#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}\sqrt{L_2^2%2bL_m^2}#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-    </tr>
-    <tr align="center">
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=3#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}3#gh-dark-mode-only"> 
-        </td> 
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=q_3#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}q_3#gh-dark-mode-only"> 
-        </td>  
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=L_3#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_3#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-    </tr>
-    <tr align="center">
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=4#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}4#gh-dark-mode-only"> 
-        </td> 
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=q_4#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}q_4#gh-dark-mode-only"> 
-        </td>  
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=L_4#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}L_4#gh-dark-mode-only"> 
-        </td>
-        <td>
-            <img src="https://render.githubusercontent.com/render/math?math=0#gh-light-mode-only"> 
-            <img src="https://render.githubusercontent.com/render/math?math=\color{white}0#gh-dark-mode-only"> 
-        </td>
-    </tr>
-</table>
+<div align="center">
 
+| $\mathbf{i}$ | $\mathbf{\theta_i}$ | $\mathbf{d_i}$ | $\mathbf{a_i}$ | $\mathbf{\alpha_i}$ |
+|:------------:|:-------------------:|:--------------:|:--------------:|:-------------------:|
+|      $1$     |         $q_1$       |      $L_1$     |       $0$      |   $-\frac{\pi}{2}$  |
+|      $2$     |         $q_2$       |       $0$      |      $L_r$     |         $0$         |
+|      $3$     |         $q_3$       |       $0$      |      $L_3$     |         $0$         |
+|      $4$     |         $q_4$       |       $0$      |      $L_4$     |         $0$         |
+
+</div>
+
+> __Note__: $L_r=\sqrt{L_m^2+L_2^2}$
 
 ## ROS
 Based on the _dynamixel workbench packages_ in ROS, we created a Python script that calls the __dynamixel_command service__ to move each of the manipulator's joints (waist, shoulder, elbow, wrist). This movement is done between two characteristic positions (__home__ and __goal__) and can be switched using the following keys:
@@ -173,7 +60,7 @@ Based on the _dynamixel workbench packages_ in ROS, we created a Python script t
 * <kbd>a</kbd>: Go the selected joint to home position.
 * <kbd>d</kbd>: Go the selected joint to goal position.
 
-> __Note:__ The change between joints is cyclic, so if you select the gripper, the next joint will be the waist and vice versa.
+> __Note__: The change between joints is cyclic, so if you select the gripper, the next joint will be the waist and vice versa.
 
 The code used to move the manipulator uses the _pynput_ library to detect the keys pressed, and the *dynamixel_command service* to send commands to dynamixel motors. The code is available in this [file](scripts/key_control.py).
 
@@ -236,19 +123,17 @@ In order to display the `noa` frame, we use the *tool* property in the SerialLin
     <img src="https://user-images.githubusercontent.com/30636259/168400566-6522913a-0214-4ad1-b81c-0e90264ff7ed.svg" width="400px">
 </p>
 
-1. <img src="https://render.githubusercontent.com/render/math?math=[\pi/6, \pi/3, -\pi, 3\pi/4]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[\pi/6, \pi/3, -\pi, 3\pi/4]#gh-dark-mode-only"> 
-1. <img src="https://render.githubusercontent.com/render/math?math=[\pi/3, \pi/6, \pi/7, 3\pi/7]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[\pi/3, \pi/6, \pi/7, 3\pi/7]#gh-dark-mode-only"> 
-1. <img src="https://render.githubusercontent.com/render/math?math=[-\pi/6, \pi/5, \pi/4, \pi]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[-\pi/6, \pi/5, \pi/4, \pi]#gh-dark-mode-only"> 
-1. <img src="https://render.githubusercontent.com/render/math?math=[\pi,\pi/9,-\pi/2, -3\pi/4]#gh-light-mode-only"> <img src="https://render.githubusercontent.com/render/math?math=\color{white}[\pi,\pi/9,-\pi/2, -3\pi/4]#gh-dark-mode-only"> 
+1. $\begin{bmatrix}\pi/6&\pi/3&-\pi&3\pi/4\end{bmatrix}$
+1. $\begin{bmatrix}\pi/3&\pi/6&\pi/7&3\pi/7\end{bmatrix}$
+1. $\begin{bmatrix}-\pi/6&\pi/5&\pi/4&\pi\end{bmatrix}$
+1. $\begin{bmatrix}\pi&\pi/9&-\pi/2&-3\pi/4\end{bmatrix}$
 
 > The development of this code is in [px file](matlab/px.m).
 
 ## MATLAB connection
 To establish the MATLAB connection with the dynamixel package, the tutorial described at this [repo](https://github.com/fegonzalez7/rob_unal_clase4) was used. To send each joint position, we create a ROS client and the position and id of each motor is sent with a message.
 
-Finally, the conection with MATLAB, ROS and python is shown in the following video:
-
-https://user-images.githubusercontent.com/30636259/168402959-8d4c3c9a-d791-44a3-9c8f-2eef6cf14a95.mp4
+Finally, the connection with MATLAB, ROS and python is shown in the following video:
 
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->
 
