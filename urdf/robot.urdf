@@ -1,11 +1,17 @@
 <?xml version="1.0"?>
-<robot name="filoberta">
+<robot name="filoberta" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Parameters -->
+    <xacro:property name="L1" value="0.0445"/>
+    <xacro:property name="L2" value="0.1010"/>
+    <xacro:property name="L3" value="0.1010"/>
+    <xacro:property name="L4" value="0.1090"/>
+    <xacro:property name="Lm" value="0.0315"/>
+
     <!-- Add fixed base link -->
     <link name="world"></link>
 
     <!-- Add fixed transform to fix base link robot -->
     <joint name="joint_world" type="fixed">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
         <parent link="world" />
         <child link="link0" />
     </joint>
@@ -22,9 +28,10 @@
             </material>
         </visual>
     </link>
-
+    
+    <!-- J0 -->
     <joint name="waist" type="revolute">
-        <origin xyz="0.0 0.0 0.0445" rpy="0.0 0.0 0.0" />
+        <origin xyz="0.0 0.0 ${0.08945-L1}" rpy="0.0 0.0 0.0" />
         <parent link="link0" />
         <child link="link1" />
         <axis xyz="0.0 0.0 1.0" />
@@ -43,8 +50,9 @@
         </visual>
     </link>
 
+    <!-- J1 -->
     <joint name="shoulder" type="revolute">
-        <origin xyz="0.0 0.0 0.0445" rpy="${-pi/2} 0.0 0.0" />
+        <origin xyz="0.0 0.0 ${L1}" rpy="${-pi/2} 0.0 0.0" />
         <parent link="link1" />
         <child link="link2" />
         <axis xyz="0.0 0.0 1.0" />
@@ -63,8 +71,9 @@
         </visual>
     </link>
 
+    <!-- J2 -->
     <joint name="elbow" type="revolute">
-        <origin xyz="0.0315 -0.101 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="${Lm} ${-L2} 0.0" rpy="0.0 0.0 0.0" />
         <parent link="link2" />
         <child link="link3" />
         <axis xyz="0.0 0.0 1.0" />
@@ -83,8 +92,9 @@
         </visual>
     </link>
 
+    <!-- J3 -->
     <joint name="wrist" type="revolute">
-        <origin xyz="0.101 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="${L3} 0.0 0.0" rpy="0.0 0.0 0.0" />
         <parent link="link3" />
         <child link="link4" />
         <axis xyz="0.0 0.0 1.0" />
@@ -104,14 +114,14 @@
     </link>
 
     <joint name="joint4" type="fixed">
-        <origin xyz="0.109 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="${L4} 0.0 0.0" rpy="0.0 0.0 0.0" />
         <parent link="link4" />
         <child link="gripper_bar" />
     </joint>
 
     <link name="gripper_bar">
         <visual>
-            <origin xyz="-0.109 0.0 0.0" rpy="${pi/2} ${-pi/2} 0.0" />
+            <origin xyz="${-L4} 0.0 0.0" rpy="${pi/2} ${-pi/2} 0.0" />
             <geometry>
                 <mesh filename="package://px100_robot/meshes/px100_7_gripper_bar.stl" scale="0.001 0.001 0.001" />
             </geometry>
