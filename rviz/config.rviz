@@ -61,11 +61,11 @@ Visualization Manager:
       Frames:
         All Enabled: false
         finger_1:
-          Value: true
-        finger_2:
-          Value: true
-        gripper_bar:
           Value: false
+        finger_2:
+          Value: false
+        gripper_bar:
+          Value: true
         link0:
           Value: true
         link1:
@@ -75,9 +75,9 @@ Visualization Manager:
         link3:
           Value: true
         link4:
-          Value: false
-        prop:
           Value: true
+        prop:
+          Value: false
         world:
           Value: true
       Marker Alpha: 1
@@ -195,7 +195,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.4762728214263916
+      Distance: 0.5993393063545227
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -211,9 +211,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: -0.05960140749812126
+      Pitch: 0.31539857387542725
       Target Frame: <Fixed Frame>
-      Yaw: 5.013603687286377
+      Yaw: 5.633617401123047
     Saved: ~
 Window Geometry:
   Displays:

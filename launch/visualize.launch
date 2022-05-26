@@ -1,7 +1,7 @@
 <launch>
     <!-- Args -->
-    <arg name="model" default="$(find px100_robot)/urdf/robot.urdf" />
-    <arg name="rvizconfig" default="$(find px100_robot)/rviz/config.rviz" />
+    <arg name="model" default="$(find px100_description)/urdf/robot.urdf" />
+    <arg name="rvizconfig" default="$(find px100_description)/rviz/config.rviz" />
 
     <!-- Load robot model urdf -->
     <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />

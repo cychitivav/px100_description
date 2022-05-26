@@ -1,4 +1,4 @@
-# PincherX 100 robot arm package
+# PincherX 100 description
 This repo contains the second practice lab for robotics class at Universidad Nacional de Colombia
 
 <p align="center">
@@ -17,7 +17,7 @@ This repo contains the second practice lab for robotics class at Universidad Nac
 In order to create a new package, we used the next command (in the workspace folder):
 
 ```bash
-catkin create pkg hello_turtle -m "Cristian Chitiva" "cychitivav@unal.edu.co" -m "Brayan Estupinan" "blestupinanp@unal.edu.co" -l "MIT" --catkin-deps rospy dynamixel_workbench_controllers 
+catkin create pkg px100_description -m "Cristian Chitiva" "cychitivav@unal.edu.co" -m "Brayan Estupinan" "blestupinanp@unal.edu.co" -l "MIT" --catkin-deps rospy dynamixel_workbench_controllers 
 ```
 
 The dependencies of this package are:
@@ -89,15 +89,23 @@ This package has two launch files, the [first file](launch/px100_rviz.launch) to
 The first launch file can be executed with the following command:
 
 ```bash
-roslaunch px100_rviz px100_rviz.launch
+roslaunch px100_description visualize.launch
 ```
 
 and the second launch file with the following command:
 
 ```bash
-roslaunch px100 px100.launch run_dynamixel:=true
+roslaunch px100_description px100.launch run_dynamixel:=true
 ```
-> __Note:__ The second launch file can receive an argument to run or not the *dynamixel_workbenh* packages, which is responsible for publishing the joint states by making a remap of the **/dynamixel_workbench/joint_states** to **/joint_states** topic.
+> __Note:__ The second launch file can receive an argument to run or not the *dynamixel_workbench* packages, which is responsible for publishing the joint states by making a remap of the **/dynamixel_workbench/joint_states** to **/joint_states** topic.
+
+#### Run python node key control
+To use the python node in launch with rviz, you need to run the following command:
+
+```bash
+rosnode kill /joint_state_publisher_gui
+rosrun px100_description key_control.py True
+```
 
 ##### Configuration files
 The files to setup the parameter needed to run the *dynamixel_workbench* package are in the [configuration folder](config/).
@@ -136,6 +144,9 @@ To establish the MATLAB connection with the dynamixel package, the tutorial desc
 Finally, the connection with MATLAB, ROS and python is shown in the following video:
 
 <!-- los resultados obtenidos, los análisis realizados y las conclusiones. -->
+https://user-images.githubusercontent.com/30636259/168402959-8d4c3c9a-d791-44a3-9c8f-2eef6cf14a95.mp4
+
+[Youtube](https://www.youtube.com/watch?v=nmZt0jveYos)
 
 
 ## References
