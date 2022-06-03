@@ -48,7 +48,7 @@
                 <color rgba="0.15 0.15 0.15 1.0" />
             </material>
         </visual>
-    </link>
+    </link> 
 
     <!-- J1 -->
     <joint name="shoulder" type="revolute">
@@ -73,7 +73,7 @@
 
     <!-- J2 -->
     <joint name="elbow" type="revolute">
-        <origin xyz="${Lm} ${-L2} 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="${Lm} ${-L2} 0.0" rpy="0.0 0.0 ${-atan2(L2,Lm)}" />
         <parent link="link2" />
         <child link="link3" />
         <axis xyz="0.0 0.0 1.0" />
@@ -82,7 +82,7 @@
 
     <link name="link3">
         <visual>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2} ${pi/2} " />
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2} ${pi/2+atan2(L2,Lm)}" />
             <geometry>
                 <mesh filename="package://px100_description/meshes/px100_4_forearm.stl" scale="0.001 0.001 0.001" />
             </geometry>
@@ -94,7 +94,7 @@
 
     <!-- J3 -->
     <joint name="wrist" type="revolute">
-        <origin xyz="${L3} 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="${L3*cos(atan2(L2,Lm))} ${L3*sin(atan2(L2,Lm))} 0.0" rpy="0.0 0.0 ${atan2(L2,Lm)}" />
         <parent link="link3" />
         <child link="link4" />
         <axis xyz="0.0 0.0 1.0" />
@@ -114,14 +114,14 @@
     </link>
 
     <joint name="joint4" type="fixed">
-        <origin xyz="${L4} 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="${L4} 0.0 0.0" rpy="${-pi/2} 0.0 ${-pi/2}" />
         <parent link="link4" />
         <child link="gripper_bar" />
     </joint>
 
     <link name="gripper_bar">
         <visual>
-            <origin xyz="${-L4} 0.0 0.0" rpy="${pi/2} ${-pi/2} 0.0" />
+            <origin xyz="0.0 0.0 ${-L4}" rpy="${-pi/2} 0.0 ${-pi/2}" />
             <geometry>
                 <mesh filename="package://px100_description/meshes/px100_7_gripper_bar.stl" scale="0.001 0.001 0.001" />
             </geometry>
@@ -153,12 +153,12 @@
 
     <!-- Joint finger 1 with mimc respect to last motor -->
     <joint name="joint6" type="prismatic">
-        <origin xyz="${0.08605-L4} 0.0 0.0" rpy="${pi/2} ${pi} 0.0" />
+        <origin xyz="0.0 0.0 ${0.08605-L4}" rpy="0.0 ${pi/2} 0.0" />
         <parent link="gripper_bar" />
         <child link="finger_1" />
         <axis xyz="0.0 1.0 0.0" />
         <limit lower="-0.04" upper="-0.015" effort="0.0" velocity="0.0" />
-        <mimic joint="gripper" multiplier="-0.015" offset="-0.025" />
+        <mimic joint="gripper" multiplier="-0.008" offset="-0.0265" />
     </joint>
 
     <link name="finger_1">
@@ -173,9 +173,9 @@
         </visual>
     </link>
 
-    <!-- Joint finger 2 with mimc respect to last motor -->
+  
     <joint name="joint7" type="prismatic">
-        <origin xyz="${0.08605-L4} 0.0 0.0" rpy="${-pi/2} ${pi} 0.0" />
+        <origin xyz="0.0 0.0 ${0.08605-L4}" rpy="0.0 ${pi/2} ${pi}" />
         <parent link="gripper_bar" />
         <child link="finger_2" />
         <axis xyz="0.0 1.0 0.0" />
@@ -193,5 +193,5 @@
                 <color rgba="0.15 0.15 0.15 1.0" />
             </material>
         </visual>
-    </link>
+    </link> 
 </robot>
