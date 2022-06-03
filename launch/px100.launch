@@ -20,7 +20,7 @@
         <remap from="/dynamixel_workbench/joint_states" to="joint_states" />
     </node>
 
-    <node unless="$(arg run_dynamixel)" name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" required="true" output="screen" />
+    <node name="key_teleop" pkg="px100_description" output="screen" type="key_control" args="$(arg run_dynamixel)" />
 
     <!-- Run RViz with config -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />

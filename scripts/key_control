@@ -1,14 +1,15 @@
-import roboticstoolbox as rtb # Robotics and numerical libraries
+import roboticstoolbox as rtb  # Robotics and numerical libraries
 import numpy as np
 from pynput.keyboard import Key, Listener, KeyCode  # Libraries for keyboard input
 import rospy  # ROS libraries
 from dynamixel_workbench_msgs.srv import DynamixelCommand
 from sensor_msgs.msg import JointState
-import sys # Library to add arguments to the script
+import sys  # Library to add arguments to the script
 
 
-class myKeyboard():
+class myKeyboard(Listener):
     def __init__(self, dynamixel):
+        super().__init__(on_press=self.onPress)
         # Variables to save robot information
         self.dynamixel = True if dynamixel == 'true' else False
         self.currentID = 1
@@ -28,19 +29,18 @@ class myKeyboard():
         * a: home position
         * d: goal position"""
         rospy.logwarn('You are control the waist')
-
         rospy.loginfo(welcome)  # Show welcome message
-        listener = Listener(on_press=self.onPress)
-        listener.start()
 
-        while not rospy.is_shutdown(): # Loop to keep the listener running
+        self.start() # Start keyboard listener
+        while not rospy.is_shutdown():  # Loop to keep the listener running
             pass
-        listener.stop()
+        self.stop()
 
     def onPress(self, key):
         print("\033[A")  # Print especial character to erase key pressed
         if not rospy.is_shutdown():
-            if key == KeyCode.from_char('w'): # Turn off the motor light, change ID and turn on the next motor light
+            # Turn off the motor light, change ID and turn on the next motor light
+            if key == KeyCode.from_char('w'):
                 if self.dynamixel:
                     self.jointCommand(self.currentID, 'LED', 0)
 
@@ -55,7 +55,8 @@ class myKeyboard():
                 if self.dynamixel:
                     self.jointCommand(self.currentID, 'LED', 1)
 
-            if key == KeyCode.from_char('s'):  # Turn off the motor light, change ID and turn on the next motor light
+            # Turn off the motor light, change ID and turn on the next motor light
+            if key == KeyCode.from_char('s'):
                 if self.dynamixel:
                     self.jointCommand(self.currentID, 'LED', 0)
 
@@ -69,8 +70,9 @@ class myKeyboard():
                     self.jointCommand(self.currentID, 'LED', 1)
 
             if key == KeyCode.from_char('a'):
-                angle = self.homePosition[self.currentID-1] # Get the home position of the joint and store it in angle
-                if self.dynamixel: # If the motor is available, send the command to the motor
+                # Get the home position of the joint and store it in angle
+                angle = self.homePosition[self.currentID-1]
+                if self.dynamixel:  # If the motor is available, send the command to the motor
                     self.jointCommand(
                         self.currentID, 'Goal_Position', self.deg2bin(angle))
                 else:
@@ -84,7 +86,8 @@ class myKeyboard():
                 else:
                     self.jointStatePublisher(self.currentID-1, angle)
 
-    def jointCommand(self, id_num, addr_name, value): # Function to send commands to the dynamixel with the dynamixel_command service
+    # Function to send commands to the dynamixel with the dynamixel_command service
+    def jointCommand(self, id_num, addr_name, value):
         rospy.wait_for_service('dynamixel_workbench/dynamixel_command')
         try:
             dynamixel_command = rospy.ServiceProxy(
@@ -94,10 +97,11 @@ class myKeyboard():
         except rospy.ServiceException as e:
             rospy.logwarn(str(e))
 
-    def deg2bin(self, angle): # Function to convert degrees to binary (0-4095)
+    def deg2bin(self, angle):  # Function to convert degrees to binary (0-4095)
         return round(angle/360*4095+2048)
 
-    def jointStatePublisher(self, id, angle): # Function to publish the joint states if run_dynamixel is False
+    # Function to publish the joint states if run_dynamixel is False
+    def jointStatePublisher(self, id, angle):
         self.currentPosition[id] = angle
 
         msg = JointState()

@@ -3,3 +3,6 @@
 
 # MATLAB
 *.asv
+
+# Python
+*__pycache__
