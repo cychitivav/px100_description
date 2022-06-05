@@ -27,14 +27,20 @@ class PX(rtb.DHRobot):
             tool=SE3(trotx(-np.pi/2)@troty(np.pi/2))
         )
 
+        # Initialize the node
+        rospy.init_node('robotRTB', anonymous=False)
+
         self.joints = [0, 0, 0, 0]
 
         # ROS node to publish joint states if run_dynamixel is False
         self.sub = rospy.Subscriber(
             '/joint_states', JointState, self.updateJoints)
 
+        rospy.loginfo("Filoberta initialized")
+        rospy.spin()
 
     # Function to send commands to the dynamixel with the dynamixel_command service
+
     def jointCommand(self, id_num, addr_name, value):
         rospy.wait_for_service('dynamixel_workbench/dynamixel_command')
         try:
@@ -136,7 +142,4 @@ class PX(rtb.DHRobot):
 
 
 if __name__ == "__main__":
-    # Initialize the node and instantiate the class PXrobot
-    rospy.init_node('TeleopKey', anonymous=False)
-
     PXrobot()
