@@ -24,6 +24,47 @@ The dependencies of this package are:
 * rospy
 * dynamixel_workbench_controllers 
 
+## Docker
+To run the container, first we need to build the image:
+
+```bash
+docker build -t px100:latest .
+```
+
+Then, we can run the container with the next commands:
+
+```bash
+xhost + # Allow connections from any host
+
+docker run -it \
+           --rm \
+           -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+           -v $PWD:/root/catkin_ws/src/px100_description \
+           --name px100 \
+           px100:latest
+```
+
+### From WSL2
+In order to connect the USB devices from Windows to WSL, it is necessary to install *USBIP* in both systems. The steps to follow are:
+
+1. Install USBIP in Windows:
+    ```powershell
+    winget install --interactive --exact dorssel.usbipd-win
+    ```
+2. Install USBIP tools in WSL:
+    ```bash
+    sudo apt install linux-tools-generic hwdata
+    sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/*-generic/usbip 20
+    ```
+3. Attach the USB device to the USBIP server:
+    ```powershell
+    usbip wsl list
+    usbip bind --busid <busid>
+    ```
+    > **Note**: Run the commands in PowerShell as administrator.
+
+4. `lsusb` should show the device connected to the USBIP server.
+
 ## Robot description
 To properly move the robot, a model was first created taking into account the measurements made with a vernier caliper.
 <p align="center">
